@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
-import { FaArrowRightLong } from "react-icons/fa6";
+import React from 'react'
+import Card from './components/Card';
 
+function App() {
 
-const App = () => {
-  const [val,setVal]=useState(false)
+  const data=[
+    {name: "john", profession: "painter", image: "https://images.unsplash.com/photo-1509768368676-f3c3b060679d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXQlMjBtYW58ZW58MHx8MHx8fDA%3D"},
+    {name: "rahul", profession: "carpainter", image: "https://images.unsplash.com/photo-1715454000430-4b5109c29060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG9ydHJhaXQlMjBtYW58ZW58MHx8MHx8fDA%3D"},
+    {name: "gourav", profession: "plumber", image: "https://images.unsplash.com/photo-1716660664854-31beab15eb1e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cG9ydHJhaXQlMjBtYW58ZW58MHx8MHx8fDA%3D"},
+    {name: "sourav", profession: "driver", image: "https://images.unsplash.com/photo-1682251096914-41c7c3d17e42?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0JTIwbWFufGVufDB8fDB8fHww "}
+  ];
   return (
-    <div className='w-full h-screen bg-zinc-300 flex justify-center items-center'>
-      <div className='relative w-60 h-32 bg-zinc-500 rounded-md flex overflow-hidden '>
-    
-    <img className={`shrink-0 transition-transform duration-700 ease-in-out ${val ===false ? "-translate-x-[0%]" : "-translate-x-[100%]"} w-full h-full object-cover`} src="https://images.unsplash.com/photo-1723643136002-d49a1d7309d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8" alt="" />
- <img className={`shrink-0 transition-transform duration-700 ease-in-out ${val ===false ? "-translate-x-[0%]" : "-translate-x-[100%]"} w-full h-full object-cover`} src="https://images.unsplash.com/photo-1723441857662-d465a52e78d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8" alt="" />
-        <span onClick={()=>setVal(()=>!val)} className='absolute w-8 h-8 bottom-[0%] left-1/2 -translate-x-[50%] -translate-y-[50%] flex items-center justify-center rounded-full bg-[#dadada8b]' >
-        <FaArrowRightLong size={".7em"}/>
-        </span>
-      </div>
-
+    <>
+    <div className='w-full h-screen bg-zinc-300 flex gap-4 items-center justify-center'>
+         {data.map((item, index)=>(
+          <Card image={item.image} name={item.name} profession={item.profession}/>
+          ))}
     </div>
+    </>
+ 
   )
 }
 
