@@ -1,24 +1,61 @@
-import React from 'react'
-import Card from './components/Card';
+import React, { useState } from "react";
+import Card from "./components/Card";
+import Navbar from "./components/Navbar";
 
 function App() {
-
-  const data=[
-    {name: "john", profession: "painter", image: "https://images.unsplash.com/photo-1509768368676-f3c3b060679d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXQlMjBtYW58ZW58MHx8MHx8fDA%3D"},
-    {name: "rahul", profession: "carpainter", image: "https://images.unsplash.com/photo-1715454000430-4b5109c29060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG9ydHJhaXQlMjBtYW58ZW58MHx8MHx8fDA%3D"},
-    {name: "gourav", profession: "plumber", image: "https://images.unsplash.com/photo-1716660664854-31beab15eb1e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cG9ydHJhaXQlMjBtYW58ZW58MHx8MHx8fDA%3D"},
-    {name: "sourav", profession: "driver", image: "https://images.unsplash.com/photo-1682251096914-41c7c3d17e42?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0JTIwbWFufGVufDB8fDB8fHww "}
+  const data = [
+    {
+      image:
+        "https://images.unsplash.com/photo-1720048171080-78849cff8b19?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      name: "Challenger",
+      artist: "Sahil",
+      added: false,
+    },
+    {
+      image:
+        "https://plus.unsplash.com/premium_photo-1669842336826-28b52708792a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      name: "forever",
+      artist: "Gourav",
+      added: false,
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1724232547374-69758574fff5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      name: "Dusk till dawn",
+      artist: "Sourav",
+      added: false,
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1724232547374-69758574fff5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      name: "gangster life",
+      artist: "milkha",
+      added: false,
+    },
   ];
+
+  const [songData, setSongData] = useState(data);
+    const handleClick = (index)=>{
+      setSongData((prev)=>{
+       return prev.map((item, itemindex)=>{
+        if(itemindex === index) return {...item, added : !item.added};
+        
+        return item ;
+       })
+      })
+    }
   return (
     <>
-    <div className='w-full h-screen bg-zinc-300 flex gap-4 items-center justify-center'>
-         {data.map((item, index)=>(
-          <Card image={item.image} name={item.name} profession={item.profession}/>
+      <div className="w-full h-screen bg-zinc-300 ">
+        <Navbar data={songData} />
+        <div className="px-20 flex gap-10 mt-10  flex-wrap">
+          {songData.map((obj, index) => (
+            <Card data={obj} handleClick= {handleClick} index={index} key={index} />
           ))}
-    </div>
+        </div>
+      </div>
     </>
- 
-  )
+  );
 }
 
-export default App
+export default App;
